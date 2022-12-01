@@ -1,1 +1,2 @@
 beautifulsoup4 >= 4.1.1
+markdownify >= 0.11.6
