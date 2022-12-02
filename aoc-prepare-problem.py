@@ -35,6 +35,17 @@ def scrap_riddle(day_number):
         return ""
 
 
+def copy_solver(dest_folder):
+    solver_code = ""
+    solver_path = path.join(dest_folder, "solver.py")
+    if path.exists(solver_path):
+        return
+    with open("template-solver.py", "r") as template:
+        solver_code = template.read()
+    with open(solver_path, "w") as solver:
+        solver.write(solver_code)
+
+
 def main():
     args = get_cmdline_args()
     print(f"Scraping the riddle of day {args.day} from the website")
@@ -49,6 +60,7 @@ def main():
         os.mkdir(dirname)
     with open(path.join(dirname, "problem.md"), "w") as problem_file:
         problem_file.write(riddle_md)
+    copy_solver(dirname)
     
 
     
